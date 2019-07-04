@@ -6,6 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import SpriteScreen from '../screens/SpriteScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -67,7 +68,24 @@ SettingsStack.navigationOptions = {
 
 SettingsStack.path = '';
 
+const SpriteStack = createStackNavigator(
+  {
+    Sprite: SpriteScreen,
+  },
+  config
+);
+
+SpriteStack.navigationOptions = {
+  tabBarLabel: 'Sprite',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+  ),
+};
+
+SpriteStack.path = '';
+
 const tabNavigator = createBottomTabNavigator({
+  SpriteStack,
   HomeStack,
   LinksStack,
   SettingsStack,
